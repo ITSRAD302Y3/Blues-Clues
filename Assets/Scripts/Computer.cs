@@ -30,6 +30,8 @@ public class Computer : MonoBehaviour
         FirstPersonController.IsPaused = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        GetComponent<AudioSource>().Play();
     }
 
     public virtual void Close()
@@ -44,6 +46,8 @@ public class Computer : MonoBehaviour
         MainCanvas.SetActive(true);
 
         IsOpened = false;
+
+        GetComponent<AudioSource>().Stop();
     }
 
     public virtual void Toggle()

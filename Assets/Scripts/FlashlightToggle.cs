@@ -20,6 +20,7 @@ public class FlashlightToggle : MonoBehaviour
 	    {
 	        _light.enabled = !_light.enabled;
             _auraLight.enabled = !_auraLight.enabled;
-        }	        
+	        GetComponent<AudioSource>().Play();
+	    }
 	}
 }

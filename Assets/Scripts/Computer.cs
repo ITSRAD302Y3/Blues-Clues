@@ -3,33 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class Computer : MonoBehaviour {
-
-    public GameObject ComputerUI;
+public class Computer : MonoBehaviour
+{
+    public GameObject ComputerScreen;
+    public GameObject VirtualCamera;
+    public GameObject Flashlight;
+    public GameObject MainCanvas;
 
     public bool IsOpened = false;
 
     private void Start()
     {
-        enabled = false;
+        MainCanvas = GameObject.FindWithTag("MainCanvas");
     }
 
     public virtual void Open()
     {
         IsOpened = true;
 
-        var canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
+        VirtualCamera.SetActive(true);
+        ComputerScreen.SetActive(true);
 
-        var control = Instantiate(ComputerUI, canvas.transform);
+        Flashlight.SetActive(false);
+        MainCanvas.SetActive(false);
 
         FirstPersonController.IsPaused = true;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public virtual void Close()
-    {
-        Cursor.visible = false;
+    {                
         FirstPersonController.IsPaused = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
+        Flashlight.SetActive(true);
+        ComputerScreen.SetActive(false);
+        VirtualCamera.SetActive(false);
+        MainCanvas.SetActive(true);
 
         IsOpened = false;
     }

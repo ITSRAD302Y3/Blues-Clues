@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelFade : MonoBehaviour {
+public class LevelFade : MonoBehaviour
+{
+    private void Enable()
+    {
+        gameObject.SetActive(true);
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Disable()
+    {
+        gameObject.SetActive(false);
+    }    
 }

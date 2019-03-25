@@ -1,4 +1,5 @@
 using System;
+using Cinemachine;
 using UnityEngine;
 
 
@@ -21,7 +22,7 @@ namespace UnityStandardAssets.Utility
         private float m_Time;
 
 
-        public void Setup(Camera camera, float bobBaseInterval)
+        public void Setup(CinemachineVirtualCamera camera, float bobBaseInterval)
         {
             m_BobBaseInterval = bobBaseInterval;
             m_OriginalCameraPosition = camera.transform.localPosition;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cinemachine;
 using UnityEngine;
 
 namespace UnityStandardAssets.Utility
@@ -7,7 +8,7 @@ namespace UnityStandardAssets.Utility
     [Serializable]
     public class FOVKick
     {
-        public Camera Camera;                           // optional camera setup, if null the main camera will be used
+        public CinemachineVirtualCamera Camera;                           // optional camera setup, if null the main camera will be used
         [HideInInspector] public float originalFov;     // the original fov
         public float FOVIncrease = 3f;                  // the amount the field of view increases when going into a run
         public float TimeToIncrease = 1f;               // the amount of time the field of view will increase over
@@ -15,16 +16,16 @@ namespace UnityStandardAssets.Utility
         public AnimationCurve IncreaseCurve;
 
 
-        public void Setup(Camera camera)
+        public void Setup(CinemachineVirtualCamera camera)
         {
             CheckStatus(camera);
 
             Camera = camera;
-            originalFov = camera.fieldOfView;
+            originalFov = camera.m_Lens.FieldOfView;
         }
 
 
-        private void CheckStatus(Camera camera)
+        private void CheckStatus(CinemachineVirtualCamera camera)
         {
             if (camera == null)
             {
@@ -39,7 +40,7 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        public void ChangeCamera(Camera camera)
+        public void ChangeCamera(CinemachineVirtualCamera camera)
         {
             Camera = camera;
         }
@@ -47,10 +48,10 @@ namespace UnityStandardAssets.Utility
 
         public IEnumerator FOVKickUp()
         {
-            float t = Mathf.Abs((Camera.fieldOfView - originalFov)/FOVIncrease);
+            float t = Mathf.Abs((Camera.m_Lens.FieldOfView - originalFov)/FOVIncrease);
             while (t < TimeToIncrease)
             {
-                Camera.fieldOfView = originalFov + (IncreaseCurve.Evaluate(t/TimeToIncrease)*FOVIncrease);
+                Camera.m_Lens.FieldOfView = originalFov + (IncreaseCurve.Evaluate(t/TimeToIncrease)*FOVIncrease);
                 t += Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
@@ -59,15 +60,15 @@ namespace UnityStandardAssets.Utility
 
         public IEnumerator FOVKickDown()
         {
-            float t = Mathf.Abs((Camera.fieldOfView - originalFov)/FOVIncrease);
+            float t = Mathf.Abs((Camera.m_Lens.FieldOfView - originalFov)/FOVIncrease);
             while (t > 0)
             {
-                Camera.fieldOfView = originalFov + (IncreaseCurve.Evaluate(t/TimeToDecrease)*FOVIncrease);
+                Camera.m_Lens.FieldOfView = originalFov + (IncreaseCurve.Evaluate(t/TimeToDecrease)*FOVIncrease);
                 t -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
             //make sure that fov returns to the original size
-            Camera.fieldOfView = originalFov;
+            Camera.m_Lens.FieldOfView = originalFov;
         }
     }
 }

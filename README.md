@@ -18,7 +18,7 @@ William McLaughlin
 - Looking at possibility of Xamarin cross platform front end application
 
 ## Project Outline:
-_Technology Used_ - Unity with High Def Render Pipeline, Currently undecided stock image API, Custom API, FMod, ASP.NET application with SignalR and API.
+_Technology Used_ - Unity with Cinemachine and Post-Processing Stack, Imgur API, ASP.NET application with SignalR chat.
 
 _Initial Concept_ - Multiplayer puzzle game where players must exchange clues using the in-game chat in order to solve the puzzle.
 

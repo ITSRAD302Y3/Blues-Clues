@@ -2,8 +2,11 @@
 
 ## Team:
 Adrian Fearon
+
 David Brennan
+
 Stephen Mills
+
 William McLaughlin
 
 ## Requirements:

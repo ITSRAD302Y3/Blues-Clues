@@ -27,7 +27,7 @@ One player sitting at PC screen has access to an assortment of pictures displaye
 The second player must search a separate room for clues as to which picture is the correct answer.
 
 ### Win Condition:
-The searching player must select the correct image.
+The choosing player (Answerer) must select the correct image.
 
 ### Steps to Win:
 _Step 1:_ Both players start in separate rooms. One at the computer with the puzzle on screen, the other in the room with the clues.
@@ -43,7 +43,7 @@ _Step 5:_ Repeat steps 3 and 4 until player one thinks they have the right answe
 _Step 6:_ Player one chooses the correct image.
 
 ### Fail Condition:
-The searching player fails to select the correct image.
+The choosing player (Answerer) fails to select the correct image.
 
 ### Conditions for Failure:
 _Condition 1:_ Only one player spawns in. API fails to call images.
